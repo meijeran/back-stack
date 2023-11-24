@@ -1,0 +1,19 @@
+apiVersion: backstack.cncf.io/v1alpha1
+kind: AKSCluster
+metadata:
+  name: test
+  namespace: default
+spec:
+  parameters:
+    id: test
+    region: west-europe
+    version: 1.27.3
+    nodes:
+      count: 3
+      instanceType: Standard_B2s
+  writeConnectionSecretToRef:
+    name: test-kubeconfig
+  publishConnectionDetailsTo:
+    name: test/test-kubeconfig
+    configRef:
+      name: vault
